@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="ResaBundle\Entity\Chambre" table="Chambre">
+    <indexes>
+      <index name="FK_Chambre_Id_Hotel" columns="Id_Hotel"/>
+    </indexes>
+    <id name="id" type="integer" column="Id"/>
+    <id name="idHotel" association-key="true"/>
+    <field name="numchambre" type="integer" column="numChambre" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="places" type="integer" column="Places" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <field name="reservee" type="boolean" column="Reservee" nullable="true"/>
+    <field name="clim" type="boolean" column="Clim" nullable="false"/>
+    <field name="tv" type="boolean" column="TV" nullable="false"/>
+    <field name="internet" type="boolean" column="Internet" nullable="false"/>
+    <field name="animaux" type="boolean" column="Animaux" nullable="false"/>
+    <one-to-one field="idHotel" target-entity="Hotel" fetch="LAZY">
+      <join-columns>
+        <join-column name="Id_Hotel" referenced-column-name="Id"/>
+      </join-columns>
+    </one-to-one>
+  </entity>
+</doctrine-mapping>

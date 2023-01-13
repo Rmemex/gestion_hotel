@@ -1,0 +1,6 @@
+resa:
+    resource: "@ResaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+

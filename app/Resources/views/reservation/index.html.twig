@@ -1,0 +1,41 @@
+{% extends '@Resa/base.html.twig' %}
+
+{% block body %}
+    <h1>Reservation list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Datearrivee</th>
+                <th>Datedepart</th>
+                <th>Idreservation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td><a href="{{ path('reservation_show', { 'id': reservation.idreservation }) }}">{{ reservation.datearrivee }}</a></td>
+                <td>{% if reservation.datedepart %}{{ reservation.datedepart|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ reservation.idreservation }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reservation_show', { 'id': reservation.idreservation }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reservation_edit', { 'id': reservation.idreservation }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reservation_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
